@@ -43,6 +43,13 @@ if ($itemId > 0 && $noofitem > 0 && !empty($seller_id) && !empty($seller_type) &
         $insertStmt->bind_param("iisssis", $itemId, $seller_id, $seller_type, $noofitem, $buyer, $payment_status, $date_added);
         
         if ($insertStmt->execute()) {
+            $_SESSION['itemId'][] = $itemId;
+
+            $_SESSION['seller_id'][] = $seller_id;
+            $_SESSION['seller_type'][] = $seller_type;
+            $_SESSION['noofitem'][] = $noofitem;
+            $_SESSION['buyer'][] = $buyer;
+            $_SESSION['date_added'][] = $date_added;
             echo "1"; // Success response
         } else {
             error_log("Error adding item to cart: " . $insertStmt->error);
