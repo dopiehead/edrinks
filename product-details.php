@@ -108,7 +108,7 @@ $update_product->execute();  // Execute the update query
 
 
                          <input type="button" value="-" id="subs" class="btn btn-light" onclick="subst()">&nbsp;
-                         <input type="text" class="onlyNumber w-25 border border-mute" id="noofitem" value="<?php if(!empty($quantity)): echo htmlspecialchars($quantity);   else : echo ""; endif;  ?>" name="noofitem">&nbsp;
+                         <input type="number" class="onlyNumber w-25 border border-mute"  max="<?= htmlspecialchars($quantity); ?>" id="noofitem" value="<?php if(!empty($quantity)): echo htmlspecialchars($quantity);   else : echo ""; endif;  ?>" name="noofitem">&nbsp;
                          <input type="button" value="+" id="adds" onclick="add()" class="btn btn-light">  
                                                  
                          <input type="hidden" name="items_per_id" id="items_per_id" value="<?php if($user_type =='wholesaler'){ echo  htmlspecialchars($items_per_id); } else{ echo "";} ?>"> 

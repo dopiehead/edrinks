@@ -32,7 +32,8 @@
                     <button type="button" class="btn btn-outline-secondary btn-sm" id='Customer'>Customer</button>
                     <button type="button" class="btn btn-outline-secondary btn-sm" id='Imposter'>Importer</button>
                     <button type="button" class="btn btn-outline-secondary btn-sm" id='Wholesaler'>Wholesaler</button>           
-                    <button type="button" class="btn btn-outline-secondary btn-sm" id='Retailer'>Retailer</button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" id='Distributor'>Distributor</button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" id='Manufacturer'>Manufacturer</button>
 
                     <input type="hidden" id="user_type" name="user_type">
                 </div>

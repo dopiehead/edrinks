@@ -1,8 +1,8 @@
 <?php session_start();
      if(isset($_SESSION['user_id'])){
          $userId = $_SESSION['user_id'];
-         require("../../engine/config.php");
-         include("../contents/profile-contents.php");
+         require("../engine/config.php");
+         include("contents/profile-contents.php");
          
      }
 
@@ -21,8 +21,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script>
-    <link rel="stylesheet" href="../../assets/css/wholesaler/wholesaler-dashboard.css">
-    <link rel="stylesheet" href="../../assets/css/wholesaler/wholesaler-products.css">
+    <link rel="stylesheet" href="../assets/css/wholesaler/wholesaler-dashboard.css">
+    <link rel="stylesheet" href="../assets/css/wholesaler/wholesaler-products.css">
 
 </head>
 <body class="bg-light">
@@ -35,23 +35,22 @@
             </div>
             <div class="d-flex align-items-center gap-3">
                 <i class="fas fa-bell text-secondary"></i>
-                <img src="<?php echo"../../" .htmlspecialchars($user_image); ?>" class="rounded-circle" width="32" height="32">
+                <img src="<?php echo"../" .htmlspecialchars($user_image); ?>" class="rounded-circle" width="32" height="32">
                 <span><?php echo htmlspecialchars($user_name); ?></span>
                 <i class="fas fa-chevron-down"></i>
             </div>
         </div>
     </nav>
     <!-- Navbar -->
-     
-      <?php include ("../components/side-bar.php"); ?>
+      <?php include ("components/side-bar.php"); ?>
 
 
     <!-- Main Content -->
-    <div class="main-content pt-5 my-3 px-2">
+    <div class="main-content pt-3 my-4 px-2">
 
-    <h6 class='fw-bold mt-5'>My products</h6>
+    <h6 class='fw-bold mt-5 mb-3'>My products</h6>
      
-    <div class='d-flex justify-content-between align-items-center flex-wrap gap-3 mt-5'>
+    <div class='d-flex justify-content-evenly align-items-center flex-wrap gap-3 mt-1'>
     <?php 
     // Prepare SQL query to fetch products where the poster is the current user and product is not sold
     $myproducts = $conn->prepare("SELECT * FROM products WHERE poster_id = ? AND sold = 0");
@@ -64,14 +63,14 @@
     // Loop through the products
     while ($product = $myProductsResult->fetch_assoc()) {
         // Get product data
-         include("../../contents/product-contents.php");
+         include("../contents/product-contents.php");
   
         ?>
         
         <div class='card'>
             <div class='card-image'>
                 <!-- Output product image, using htmlspecialchars to escape it and prevent XSS -->
-                <a href='../../product-details.php?id=<?php echo htmlspecialchars(base64_encode($product_id)); ?>'><img src='<?php echo"../../". htmlspecialchars($product_image, ENT_QUOTES, 'UTF-8'); ?>'></a>
+                <a href='../product-details.php?id=<?php echo htmlspecialchars(base64_encode($product_id)); ?>'><img src='<?php echo"../". htmlspecialchars($product_image, ENT_QUOTES, 'UTF-8'); ?>'></a>
             </div>
             <div class='card-body'>
                 <!-- Product name -->

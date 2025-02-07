@@ -1,6 +1,6 @@
 <?php session_start();
 
-require("../../engine/config.php"); 
+require("../engine/config.php"); 
 
 $getkey = mysqli_query($conn, "SELECT * FROM information");
 
@@ -19,7 +19,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_role'])) {
     else{
 
          $userId = $_SESSION['user_id']; 
-         include("../contents/profile-contents.php");
+         include("contents/profile-contents.php");
 
     }
 
@@ -40,8 +40,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_role'])) {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script>
      
-    <link rel="stylesheet" href="../../assets/css/wholesaler/wholesaler-dashboard.css">
-    <link rel="stylesheet" href="../../assets/css/wholesaler/wholesaler-posts.css">
+    <link rel="stylesheet" href="../assets/css/wholesaler/wholesaler-dashboard.css">
+    <link rel="stylesheet" href="../assets/css/wholesaler/wholesaler-posts.css">
 
 </head>
 <body class="bg-light">
@@ -54,14 +54,14 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_role'])) {
             </div>
             <div class="d-flex align-items-center gap-3">
                  <i class="fas fa-bell text-secondary"></i>
-                 <img src="<?php echo"../../" .htmlspecialchars($user_image); ?>" class="rounded-circle" width="32" height="32">
+                 <img src="<?php echo"../" .htmlspecialchars($user_image); ?>" class="rounded-circle" width="32" height="32">
                  <span><?php echo htmlspecialchars($user_name); ?></span>
                  <i class="fas fa-chevron-down"></i>
             </div>
         </div>
     </nav>
     <!-- Navbar -->
-      <?php include ("../components/side-bar.php"); ?>
+      <?php include ("components/side-bar.php"); ?>
 
 
     <!-- Main Content -->

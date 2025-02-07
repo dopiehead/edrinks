@@ -25,10 +25,12 @@ $getbuyer->bind_param("s", $buyer);
 $getbuyer->execute();
 $result = $getbuyer->get_result();
 $user = $result->fetch_assoc();
-
+$userId = $user['id'];
 $userName = $user['user_name'];
 $userEmail = $user['user_email'];
 $userAddress = $user['user_address'];
+$userType = $user['user_type'];
+
 
 // Fetch cart items
 $cart_query = "SELECT cart.itemId, cart.noofItem, products.product_name, products.product_image, 
@@ -110,11 +112,14 @@ $delivery_fee = 7.54;
                     <tr>
                         <td colspan="3"><b>Total</b></td>
                         <td>&#8358;<?= number_format($product_price + ($product_price * 0.05) + $delivery_fee, 2); ?></td>
+                          <?php $totalamount =number_format($product_price + ($product_price * 0.05) + $delivery_fee, 2); ?>
                     </tr>
                 </tfoot>
             </table>
-            
-            <input type="hidden" name="amount" id="amount" value="<?= $product_price; ?>">
+            <input type="hidden" name="user_id" id="user_id" value="<?= htmlspecialchars($buyer); ?>">
+            <input type="hidden" name="user_type" id="user_type" value="<?= htmlspecialchars($userType); ?>">
+            <input type="hidden" name="amount" id="amount" value="<?= htmlspecialchars($totalamount); ?>">
+            <?php $_SESSION['amount'] = $totalamount; ?>
             <button type="submit" name="submit" class="btn btn-primary w-100 mt-2">Place Order</button>
         </form>
     </div>
@@ -123,28 +128,35 @@ $delivery_fee = 7.54;
 
     <script src="https://js.paystack.co/v2/inline.js"></script>
     <script>
-        $(document).ready(function () {
-            $('#paymentForm').submit(function (e) {
-                 e.preventDefault();
-                 const amount = $('#amount').val() * 100;
-                
-                 const paystack = new PaystackPop();
-                 paystack.newTransaction({
-                     key: "<?= htmlspecialchars($mykey); ?>",
-                     email: "<?= htmlspecialchars($userEmail); ?>",
-                     amount: amount,
-                     currency: "NGN",
-                     ref: "<?= $txn_ref; ?>",
-                     onSuccess: function(response) {
-                         window.location.href = "verify-transaction.php?status=success&reference="+response.reference+"&&id="+id+"&&user_type="+user_type+"&&amount="+amount ;
-                     },
-                     onCancel: function() {
-                        alert("Payment was canceled.");
-                    }
-                });
+    $(document).ready(function () {
+        $('#paymentForm').submit(function (e) {
+            e.preventDefault();
+
+            let id = $('#user_id').val();
+            let user_type = $('#user_type').val();
+            let amount = "<?= htmlspecialchars($totalamount * 100); ?>"; // Ensuring amount is defined
+            let paystack = new PaystackPop();
+
+            paystack.newTransaction({
+                key: "<?= htmlspecialchars($mykey); ?>",
+                email: "<?= htmlspecialchars($userEmail); ?>",
+                amount: amount,  // Fixed amount issue
+                currency: "NGN",
+                ref: "<?= $txn_ref; ?>",
+                onSuccess: function(response) {
+                    window.location.href = "verify-transaction.php?status=success&reference=" + 
+                        encodeURIComponent(response.reference) + 
+                        "&id=" + encodeURIComponent(id) + 
+                        "&user_type=" + encodeURIComponent(user_type) + 
+                        "&amount=" + encodeURIComponent(amount);
+                },
+                onCancel: function() {
+                    alert("Payment was canceled.");
+                }
             });
         });
-    </script>
+    });
+</script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script> 
 </body>

@@ -2,8 +2,8 @@
 <?php session_start();
      if(isset($_SESSION['user_id'])){
          $userId = $_SESSION['user_id'];
-         require("../../engine/config.php");
-         include("../contents/profile-contents.php");
+         require("../engine/config.php");
+         include("contents/profile-contents.php");
          
      }
 

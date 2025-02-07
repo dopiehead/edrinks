@@ -41,7 +41,7 @@ if (isset($_SESSION['user_id'])) {
                                          products.product_price, products.product_discount, products.product_location 
                                   FROM cart 
                                   JOIN products ON cart.itemId = products.product_id 
-                                  WHERE cart.buyer = ?";
+                                  WHERE cart.buyer = ? AND payment_status = 0";
 
                     if ($stmt = mysqli_prepare($conn, $cart_item)) {
                         mysqli_stmt_bind_param($stmt, "s", $buyer);

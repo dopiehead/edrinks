@@ -10,7 +10,7 @@ if (isset($_SESSION['user_id'])) {
 }
 
 if (!empty($_SESSION)) {
-    $cart_item = "SELECT COUNT(*) AS num_cart FROM cart WHERE buyer = ?";
+    $cart_item = "SELECT COUNT(*) AS num_cart FROM cart WHERE buyer = ? AND payment_status = 0";
 
     if ($stmt = mysqli_prepare($conn, $cart_item)) {
         mysqli_stmt_bind_param($stmt, "s", $buyer);

@@ -10,6 +10,7 @@ $seller_type = mysqli_real_escape_string($conn, $_POST['seller_type'] ?? '');
 $buyer = mysqli_real_escape_string($conn, $_POST['buyer'] ?? '');
 $payment_status = 0;
 $date_added = date('Y-m-d H:i:s');
+$amount = $_SESSION['amount'];
 
 // Ensure required fields are filled
 if ($itemId > 0 && $noofitem > 0 && !empty($seller_id) && !empty($seller_type) && !empty($buyer)) {

@@ -68,19 +68,22 @@
                             // Redirect based on role
                             switch (response.user_role) {
                                 case "Customer":
-                                    window.location.href = "dashboard/customer/customer-dashboard.php";
+                                    window.location.href = "dashboard/customer-dashboard.php";
                                     break;
                                 case "Importer":
-                                    window.location.href = "dashboard/importer/importer-dashboard.php";
+                                    window.location.href = "dashboard/importer-dashboard.php";
                                     break;
                                 case "Wholesaler":
-                                    window.location.href = "dashboard/wholesaler/wholesaler-dashboard.php";
+                                    window.location.href = "dashboard/wholesaler-dashboard.php";
                                     break;
+                                 case "Manufacturer":
+                                    window.location.href = "dashboard/manufacturer-dashboard.php";
+                                    break;                                   
                                 case "Admin":
                                     window.location.href = "dashboard/admin/admin-dashboard.php";
                                     break;
-                                case "Retailer":
-                                    window.location.href = "dashboard/retailer/retailer-dashboard.php";
+                                case "Distributor":
+                                    window.location.href = "dashboard/distributor-dashboard.php";
                                     break;
                                 default:
                                     window.location.href = "dashboard/general/general-dashboard.php";

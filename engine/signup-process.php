@@ -16,6 +16,7 @@
      $user_address = isset($_POST['user_address']) ? trim($_POST['user_address']) : "";
      $user_rating = isset($_POST['user_rating']) ? floatval($_POST['user_rating']) : 0;
      $verified = isset($_POST['verified']) ? intval($_POST['verified']) : 0;
+     $sold_items = 0;
      $vkey = md5(time() . $user_email); // Unique verification key
      $date_added = date("Y-m-d H:i:s");
 
@@ -56,19 +57,20 @@
                 user_phone,
                  user_location, 
                  user_address, 
-                 user_rating, 
+                 user_rating,
+                 sold_items, 
                  verified,
                   vkey, 
                   reset_token,
                    reset_token_expiry, 
                    date_added) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         
         if (!$stmt) {
             die("SQL Error: " . $conn->error);
         }
         
-        $stmt->bind_param("ssssssisssssss", 
+        $stmt->bind_param("ssssssississsss", 
             $user_name, 
             $user_email, 
             $hashed_password, 
@@ -78,6 +80,7 @@
             $user_location, 
             $user_address, 
             $user_rating,  // If float, change "i" to "d"
+            $sold_items,
             $verified, 
             $vkey, 
             $reset_token,

@@ -2,8 +2,8 @@
 <?php session_start();
      if(isset($_SESSION['user_id'])){
          $userId = $_SESSION['user_id'];
-         require("../../engine/config.php");
-         include("../contents/profile-contents.php");
+         require("../engine/config.php");
+         include("contents/profile-contents.php");
          
      }
 
@@ -20,26 +20,26 @@
     <title>Wholesaler Dashboard</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../assets/css/wholesaler/wholesaler-dashboard.css">
+    <link rel="stylesheet" href="../assets/css/wholesaler/wholesaler-dashboard.css">
 
 </head>
 <body class="bg-light">
 <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand text-orange fw-bold" href="#">Edrinks</a>
+            <a class="navbar-brand text-orange fw-bold" href="../../index.php">Edrinks</a>
             <div class="position-relative d-flex align-items-center">
                 <i class="fas fa-search search-icon"></i>
                 <input type="text" class="form-control search-input" placeholder="Search">
             </div>
             <div class="d-flex align-items-center gap-3">
                 <i class="fas fa-bell text-secondary"></i>
-                <img src="<?php echo"../../" .htmlspecialchars($user_image); ?>" class="rounded-circle" width="32" height="32">
+                <img src="<?php echo"../" .htmlspecialchars($user_image); ?>" class="rounded-circle" width="32" height="32">
                 <span><?php echo htmlspecialchars($user_name); ?></span>
                 <i class="fas fa-chevron-down"></i>
             </div>
         </div>
     </nav>
-<?php include ("../components/side-bar.php"); ?>
+<?php include ("components/side-bar.php"); ?>
 
     <!-- Main Content -->
     <div class="main-content pt-5">

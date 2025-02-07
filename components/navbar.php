@@ -54,17 +54,17 @@
             </a>
             <ul class="dropdown-menu">
             <li>
-    <a class="dropdown-item" href="<?php echo isset($_SESSION['user_id']) ? 'dashboard/wholesaler/wholesaler-post.php' : 'sign-in.php?details=' . urlencode('dashboard/wholesaler/wholesaler-post.php'); ?>">
+    <a class="dropdown-item" href="<?php echo isset($_SESSION['user_id']) ? 'dashboard/posts.php' : 'sign-in.php?details=' . urlencode('dashboard/wholesaler/wholesaler-post.php'); ?>">
         Wholesaler
     </a>
 </li>
 <li>
-    <a class="dropdown-item" href="<?php echo isset($_SESSION['user_id']) ? 'dashboard/importer/importer-post.php' : 'sign-in.php?details=' . urlencode('dashboard/importer/importer-post.php'); ?>">
+    <a class="dropdown-item" href="<?php echo isset($_SESSION['user_id']) ? 'dashboard/posts.php' : 'sign-in.php?details=' . urlencode('dashboard/importer/importer-post.php'); ?>">
         Importer
     </a>
 </li>
 <li>
-    <a class="dropdown-item" href="<?php echo isset($_SESSION['user_id']) ? 'dashboard/manufacturer/manufacturer-post.php' : 'sign-in.php?details=' . urlencode('dashboard/manufacturer/manufacturer-post.php'); ?>">
+    <a class="dropdown-item" href="<?php echo isset($_SESSION['user_id']) ? 'dashboard/posts.php' : 'sign-in.php?details=' . urlencode('dashboard/manufacturer/manufacturer-post.php'); ?>">
         Manufacturer
     </a>
 </li>
@@ -87,13 +87,13 @@
            if(!empty($_SESSION['user_role'])){
             $user_role = $_SESSION['user_role'];
             if($user_role=='Customer'){?>
-               <a href="dashboard/customer/customer-dashboard.php" class="icons me-3"><i class="bi bi-person"></i></a>  
+               <a href="dashboard/customer-dashboard.php" class="icons me-3"><i class="bi bi-person"></i></a>  
            <?php } elseif($user_role=='Importer') { ?>   
-               <a href="dashboard/importer/importer-dashboard.php" class="icons me-3"><i class="bi bi-person"></i></a>  
+               <a href="dashboard/importer-dashboard.php" class="icons me-3"><i class="bi bi-person"></i></a>  
            <?php } elseif($user_role == 'Wholesaler') {?> 
-            <a href="dashboard/wholesaler/wholesaler-dashboard.php" class="icons me-3"><i class="bi bi-person"></i></a>  
+            <a href="dashboard/wholesaler-dashboard.php" class="icons me-3"><i class="bi bi-person"></i></a>  
            <?php } elseif($user_role=='Distributor'){?> 
-            <a href="dashboard/distributor/distributor-dashboard.php" class="icons me-3"><i class="bi bi-person"></i></a>  
+            <a href="dashboard/distributor-dashboard.php" class="icons me-3"><i class="bi bi-person"></i></a>  
             <?php } ?>       
             <?php }  }?>
           <a href="cart.php" class="icons"><i class="bi bi-bag"></i><span style='font-size:12px; margin-top:-3px' class='numbering rounded rounded-circle bg-danger text-white px-2 position-absolute'></span></a>

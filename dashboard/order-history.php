@@ -1,13 +1,13 @@
 <?php session_start();
      if(isset($_SESSION['user_id'])){
          $userId = $_SESSION['user_id'];
-         require("../../engine/config.php");
-         include("../contents/profile-contents.php");
+         require("../engine/config.php");
+         include("contents/profile-contents.php");
          
      }
 
      else{
-         header("Location:../../index.php");
+         header("Location:../index.php");
          exit();
      }
 ?>
@@ -21,8 +21,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script>
-    <link rel="stylesheet" href="../../assets/css/wholesaler/wholesaler-dashboard.css">
-    <link rel="stylesheet" href="../../assets/css/wholesaler/wholesaler-products.css">
+    <link rel="stylesheet" href="../assets/css/wholesaler/wholesaler-dashboard.css">
+    <link rel="stylesheet" href="../assets/css/wholesaler/wholesaler-products.css">
 
 </head>
 <body class="bg-light">
@@ -35,14 +35,14 @@
             </div>
             <div class="d-flex align-items-center gap-3">
                 <i class="fas fa-bell text-secondary"></i>
-                <img src="<?php echo"../../" .htmlspecialchars($user_image); ?>" class="rounded-circle" width="32" height="32">
+                <img src="<?php echo"../" .htmlspecialchars($user_image); ?>" class="rounded-circle" width="32" height="32">
                 <span><?php echo htmlspecialchars($user_name); ?></span>
                 <i class="fas fa-chevron-down"></i>
             </div>
         </div>
     </nav>
     <!-- Navbar -->
-      <?php include ("../components/side-bar.php"); ?>
+      <?php include ("components/side-bar.php"); ?>
 
 
     <!-- Main Content -->
@@ -53,20 +53,20 @@
     <?php
 // Prepare your SQL query with a placeholder for the buyer parameter
 $sql = "SELECT 
-            products.product_id, 
-            products.product_name, 
-            products.product_location, 
-            products.product_price, 
-            products.product_image, 
-            products.product_views, 
-            products.product_discount AS discount, 
-            checkout.product_id AS checkout_product_id, 
-            checkout.product_price AS checkout_product_price,
-            checkout.noofitem,
-            checkout.buyer 
+         products.product_id AS product_id, 
+         products.product_name AS product_name, 
+         products.product_location AS product_location , 
+         products.product_price AS product_price, 
+         products.product_image AS product_image, 
+         products.product_views AS product_views,  
+         products.product_discount AS discount, 
+         cart.itemId AS itemId,         
+         cart.noofItem AS cart_no_of_items,
+         cart.buyer AS buyer,
+         cart.payment_status AS payment_status
         FROM products 
-        INNER JOIN checkout ON checkout.product_id = products.product_id 
-        WHERE checkout.buyer = ?";
+        INNER JOIN cart ON cart.itemId = products.product_id 
+        WHERE cart.buyer = ? AND cart.payment_status = 1";
 
 // Prepare the statement
 if ($stmt = $conn->prepare($sql)) {
@@ -84,32 +84,36 @@ if ($stmt = $conn->prepare($sql)) {
 }
 
 echo "<h3 class='mt-3'>Order History</h3>";
-echo "<h6 class='mt-2' style='text-align:center'><b>" . $getorderlist->num_rows . " Item(s)</b></h6>";
+echo "<h6 class='mt-2' style='text-align:right'><b>" . $getorderlist->num_rows . " Item(s)</b></h6><br>";
 
 if ($getorderlist && $getorderlist->num_rows > 0) {
     ?>
-    <div class='container'>
+    <div class='container d-flex justify-content-evenly'>
+
         <?php
+
         while ($data = $getorderlist->fetch_assoc()) {
-            echo "<div id='package'>";
+
+            echo "<div style='width:250px;' id='package mt-2 d-flex flex-row flex-column'>";
             
-            $price = $data['product_price'];
-            $dollar = round($price / $dollar_rate, 2);
+            $price = $data['product_price'];           
             
             // Show discount if available
             if ($data['discount'] > 0) {
-                echo "<span id='discount'>-" . $data['discount'] . "%</span>";
+         
             } else {
                 // Assuming you want to show product views if there is no discount.
                 // Note: In your SELECT you have 'product_views' from products, so adjust accordingly.
-                echo "<span id='noviews'>" . $data['product_views'] . " <i class='fa fa-eye'></i></span>";
+
             }
             ?>
             
             <!-- Update the link to use the correct product id column -->
-            <a href='product-details.php?id=<?php echo $data["product_id"]; ?>' target='_blank'>
-                <img loading='lazy' id='imgitem' src="<?php echo $data['product_image']; ?>">
+            <a href='../product-details.php?id=<?php echo htmlspecialchars (base64_encode($data["product_id"])); ?>' target='_blank'>
+                <img loading='lazy' id='imgitem' class='w-100' src="<?php echo"../" .htmlspecialchars($data['product_image']); ?>">
             </a>
+
+            <span id='nameitem'><a target='_blank' href='product-details.php?id="<?= htmlspecialchars($data['product_id']); ?>"'> <?= htmlspecialchars($data['product_name'])?></a></span><br>
             <?php
             // Display price details
             if ($data['discount'] > 0) {
@@ -118,17 +122,15 @@ if ($getorderlist && $getorderlist->num_rows > 0) {
                 // Discounted price
                 $discountedPrice = round($price - ($data['discount'] / 100 * $price));
                 echo "<span id='priceitem'>&#8358;" . $discountedPrice . "</span><br>";
-    
-                echo "<span style='text-decoration:line-through;' id='priceitem'>$" . round($dollar) . "</span>";
-                $discountedDollar = round($dollar - ($data['discount'] / 100 * $dollar));
-                echo "<span id='priceitem'>$" . $discountedDollar . "</span><br>";
+
+
             } else {
                 echo "<span id='priceitem'>&#8358;" . $price . "</span> ";
-                echo "<span id='priceitem'>$" . $dollar . "</span><br>";
+              
             }
     
             // Product name and location
-            echo "<span id='nameitem'><a target='_blank' href='product-details.php?id=" . $data['product_id'] . "'>" . $data['product_name'] . "</a></span><br>";
+
             echo "<span id='locitem'>" . $data['product_location'] . "</span><br>";
     
             echo "</div>";

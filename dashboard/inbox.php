@@ -2,8 +2,8 @@
      if(isset($_SESSION['user_id'])){
          $userId = $_SESSION['user_id'];
          $you = $_SESSION['user_email'];
-         require("../../engine/config.php");
-         include("../contents/profile-contents.php");
+         require("../engine/config.php");
+         include("contents/profile-contents.php");
          
      }
 
@@ -22,8 +22,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script>
-    <link rel="stylesheet" href="../../assets/css/wholesaler/wholesaler-dashboard.css">
-    <link rel="stylesheet" href="../../assets/css/wholesaler/wholesaler-products.css">
+    <link rel="stylesheet" href="../assets/css/wholesaler/wholesaler-dashboard.css">
+    <link rel="stylesheet" href="../assets/css/wholesaler/wholesaler-products.css">
 
 </head>
 <body class="bg-light">
@@ -36,14 +36,14 @@
             </div>
             <div class="d-flex align-items-center gap-3">
                 <i class="fas fa-bell text-secondary"></i>
-                <img src="<?php echo"../../" .htmlspecialchars($user_image); ?>" class="rounded-circle" width="32" height="32">
+                <img src="<?php echo"../" .htmlspecialchars($user_image); ?>" class="rounded-circle" width="32" height="32">
                 <span><?php echo htmlspecialchars($user_name); ?></span>
                 <i class="fas fa-chevron-down"></i>
             </div>
         </div>
     </nav>
     <!-- Navbar -->
-      <?php include ("../components/side-bar.php"); ?>
+      <?php include ("components/side-bar.php"); ?>
 
 
     <!-- Main Content -->
