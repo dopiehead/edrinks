@@ -1,0 +1,80 @@
+:root {
+    --primary-purple: #5b21b6;
+    --light-purple: #f8f5ff;
+}
+
+.footer {
+    background-color: #4a0082;
+    padding: 2rem 0;
+    
+}
+
+.footer-logo {
+    color: var(--primary-purple);
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+.footer-links a:hover {
+    color: var(--primary-purple);
+}
+
+.footer-heading {
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.social-links {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+}
+
+.social-links a {
+    color: #4b5563;
+    font-size: 1.2rem;
+}
+
+.social-links a:hover {
+    color: var(--primary-purple);
+}
+
+.newsletter-input {
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    padding: 0.5rem;
+}
+
+.newsletter-button {
+    background-color: var(--primary-purple);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+}
+
+@media (max-width: 768px) {
+    .footer-column {
+        margin-bottom: 2rem;
+    }
+}

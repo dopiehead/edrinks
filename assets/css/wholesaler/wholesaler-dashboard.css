@@ -1,0 +1,90 @@
+body{
+    font-family:poppins;
+}
+
+.sidebar {
+    width: 260px;
+    position: fixed;
+    height: 100vh;
+    background: white;
+}
+.main-content {
+    margin-left: 260px;
+}
+.nav-link {
+    color: #666;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+}
+.nav-link:hover {
+    background: #f8f9fa;
+}
+.nav-link.active {
+    background: #f8f9fa;
+    color: #000;
+}
+.stats-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+.chart-container {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+.progress {
+    height: 8px;
+}
+.search-input {
+    padding-left: 2.5rem;
+    border-radius: 8px;
+}
+.search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+}
+
+/* table */
+
+.table-header {
+    color: #666;
+    font-weight: 500;
+    background-color: #f8f9fa;
+}
+.status-paid {
+    color: #10b981;
+    background-color: #ecfdf5;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+.status-cancel {
+    color: #ef4444;
+    background-color: #fef2f2;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+.order-id {
+    color: #6b7280;
+    font-size: 13px;
+}
+.transaction-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+.sort-icon {
+    font-size: 12px;
+    color: #9ca3af;
+    margin-left: 4px;
+}

@@ -1,0 +1,73 @@
+
+.states-section {
+    background-color: #4a0082;
+    padding: 4rem 0;
+    border-radius: 20px;
+    position: relative;
+}
+
+.featured-image {
+    width: 300px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin: -90px auto 20px;
+    display: block;
+}
+
+.section-title {
+    color: white;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.state-pill {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #4a0082;
+    border-radius: 50px;
+    padding: 8px 20px;
+    margin: 5px;
+    display: inline-block;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.state-pill:hover {
+    background-color: white;
+    transform: translateY(-2px);
+}
+
+.state-count {
+    color: #666;
+    font-size: 0.8rem;
+    margin-left: 5px;
+}
+
+.states-container {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .states-section {
+        padding: 3rem 1rem;
+    }
+
+    .featured-image {
+        width: 250px;
+        height: 160px;
+        margin: -60px auto 20px;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+    }
+
+    .state-pill {
+        padding: 6px 15px;
+        font-size: 0.85rem;
+        margin: 4px;
+    }
+}

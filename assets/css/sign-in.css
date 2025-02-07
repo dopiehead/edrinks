@@ -1,0 +1,65 @@
+
+body {
+    background: linear-gradient(to right, #b9b9b9, #fffafe);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: poppins !important;
+}
+
+.card {
+    width: 400px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    background: #fff;
+}
+
+h2 {
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+}
+
+.form-control {
+    border-radius: 8px;
+}
+
+.btn-custom {
+    background: #6a11cb;
+    color: white;
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
+}
+
+.btn-custom:hover {
+    background: #2575fc;
+}
+
+.forgot-password {
+    display: block;
+    text-align: right;
+    font-size: 14px;
+    color: #2575fc;
+    margin-top: 5px;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 500px) {
+    .card {
+        width: 90%;
+    }
+}

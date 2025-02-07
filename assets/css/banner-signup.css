@@ -1,0 +1,11 @@
+.bg-friends{
+
+    background:url("../../assets/images/background/friends.png");
+    height:70vh;
+    background-size: cover;
+    background-position:center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:10px;
+}

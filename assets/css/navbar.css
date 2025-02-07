@@ -1,0 +1,28 @@
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #5d3fd3 !important; /* Purple Color */
+  }
+
+  .navbar {
+    border-bottom: 2px solid #5d3fd3;
+  }
+  
+
+  .nav-link {
+    font-weight: bold !important;
+    color: #5d3fd3 !important;
+  }
+
+  .nav-link:hover {
+    color: #3c24b2; /* Darker purple on hover */
+  }
+
+  .icons {
+    font-size: 1.2rem;
+    color: #5d3fd3;
+  }
+
+  .icons:hover {
+    color: #3c24b2; /* Darker purple on hover */
+  }

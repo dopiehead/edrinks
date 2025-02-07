@@ -1,0 +1,146 @@
+:root {
+    --primary-purple: #5b21b6;
+}
+
+.warehouse-header {
+    padding: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.store-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.store-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.search-bar {
+    background: #f8f9fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+}
+
+.category-pill {
+    background: #f8f9fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    color: #666;
+}
+
+.category-pill.active {
+    background: var(--primary-purple);
+    color: white;
+    border-color: var(--primary-purple);
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    margin: 1.5rem 0;
+    font-weight: 600;
+}
+
+.section-title i {
+    margin-right: 0.5rem;
+    color: var(--primary-purple);
+}
+
+.product-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.product-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.discount-badge {
+    background: #ff4444;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.product-info {
+    padding: 1rem;
+}
+
+.product-price {
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.stats {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.stats i {
+    color: var(--primary-purple);
+    margin-right: 3px;
+}
+
+.cart-sidebar {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.add-button {
+    background: var(--primary-purple);
+    color: white;
+    width: 100%;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 6px;
+    margin-top: 1rem;
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.product-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+.product-card h5 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.product-card .details {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+.product-card .price {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.product-card .actions .btn {
+    margin-right: 5px;
+}
