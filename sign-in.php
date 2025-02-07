@@ -7,25 +7,16 @@
     <link rel="stylesheet" href="assets/css/sign-in.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
+
 <body class="bg-light">
 
+  
+
      <div class="card">
+        
+     
         <h2>Sign In</h2>
         <form id="signinForm" style='font-family:poppins;'>
-
-        <!-- <div class="mb-3">
-                <label class="form-label text-secondary">Role</label>
-                <select id="user_role" class="form-control"  required>
-                     <option value="">Select your role</option>
-                     <option value="Customer">Customer</option>
-                     <option value="Importer">Importer</option>
-                     <option value="Retailer">Retailer</option>
-                     <option value="Distributor">Distributor</option>
-                     <option value="Wholesaler">Wholesaler</option>
-                     <option value="Admin">Admin</option>
-                </select>
-            </div> -->
-
 
             <div class="mb-3">
                  <label class="form-label text-secondary">Email</label>
@@ -39,7 +30,14 @@
                  <a href="sign-up.php" class='text-sm text-decoration-none mt-2'>Create Account</a>
                  <a href="forgot-password.php" class="forgot-password hover:text-decoration-none">Forgot password?</a>
             </div>
+
             <button type="submit" class="btn  btn-custom w-100 mt-3"> <span class='spinner-border text-warning'></span> <span class='signin-note'>Sign In</span> </button>
+
+            <div class="container d-flex justify-content-between mt-5">
+                 <a href="index.php" class="btn btn-outline-secondary me-2">Back to Home</a>
+                 <a href="#" onclick="window.history.back();" class="btn btn-outline-primary">Go Back</a>
+            </div>
+            
             <div id="error-message" class="error-message"></div>
         </form>
     </div>
@@ -99,7 +97,7 @@
                 });
             });
         });
-    </script>
+     </script>
 
 </body>
 </html>

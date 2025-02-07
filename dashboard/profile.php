@@ -339,7 +339,7 @@ else
 
 <script type="text/javascript">
 
-$('#lg').html("<select  id='lga' class=' lga address_details'><option>Business Axis</option></select>");
+$('#lg').html("<select  id='lga' class='lga address_details form-control'><option>Business Axis</option></select>");
   
 $('.location').on('change',function() {
   
