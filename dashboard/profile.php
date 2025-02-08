@@ -176,7 +176,7 @@
  require '../engine/connection.php';
  $getStates = mysqli_query($con,"SELECT * from states_in_nigeria GROUP by state");
 ?>
-<select name="location" class=" location address_details form-control" id="location">
+<select name="location" class=" location address_details form-control mb-3" id="location">
 <option value="">Entire Nigeria</option>
 <?php
 while ($states = mysqli_fetch_array($getStates)) {
@@ -186,7 +186,7 @@ while ($states = mysqli_fetch_array($getStates)) {
 
 </select>
 
-   <span id='lg'></span>
+   <span id='lg' class='mt-2'></span>
 
 <br>
 <h6> About Your Organisation</h6><br>
@@ -350,7 +350,7 @@ var location = $(this).val();
 
           type:"POST",
 
-            url:"engine/get-lga.php",
+            url:"../engine/get-lga.php",
 
             data:{'location':location},
 

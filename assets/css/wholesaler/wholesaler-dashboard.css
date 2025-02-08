@@ -88,3 +88,13 @@ body{
     color: #9ca3af;
     margin-left: 4px;
 }
+
+.address_details{
+    width: 100%;
+    padding:4px 5px;
+    border:1px solid rgb(180, 178, 178);
+}
+
+.address_details:focus{
+    outline:2px solid rgb(71, 129, 181);
+}
