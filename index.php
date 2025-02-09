@@ -30,7 +30,7 @@
      <?php include ("components/footer.php"); ?>
      <a class="btn-down" onclick="topFunction()"><i class='fa fa-arrow-up'></i></a>
      <script src='assets/js/index.js'></script>
-
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script> 
      <script src="assets/js/scroll.js"></script>
     
 </body>

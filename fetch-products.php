@@ -117,8 +117,6 @@ $initial_page = ($page - 1) * $num_per_page;
 // Final query with pagination
 $condition .= " LIMIT $initial_page, $num_per_page";
 
-print_r($condition);
-
 $stmt = $conn->prepare($condition);
 if (!$stmt) {
      die("Query Error: " . $conn->error);

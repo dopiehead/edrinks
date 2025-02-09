@@ -23,7 +23,7 @@
                      $state_count = $row['state_count'];
                     ?>
                   
-                  <a href='products.php?product_location=<?php echo htmlspecialchars($state); ?>' style='cursor:pointer;' class="state-pill text-caqpitalize text-dark text-decoration-none"><?php echo htmlspecialchars($state); ?> <span class="state-count">(<?php echo htmlspecialchars($state_count); ?>)</span></a>
+                  <a href='products.php?search=<?php echo htmlspecialchars($state); ?>' style='cursor:pointer;' class="state-pill text-caqpitalize text-dark text-decoration-none"><?=htmlspecialchars($state); ?> <span class="state-count">(<?= htmlspecialchars($state_count); ?>)</span></a>
 
                   <?php } ?>
                

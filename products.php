@@ -5,11 +5,9 @@ $categories = isset($_GET['categories']) && !empty($_GET['categories'])
     ? $conn->real_escape_string($_GET['categories']) 
     : '';
 
-    $search = isset($_GET['search']) && !empty($_GET['search']) 
+$search = isset($_GET['search']) && !empty($_GET['search']) 
     ? $conn->real_escape_string($_GET['search'])
     : '';
-
-
 
 $product_name = isset($_GET['product_name']) && !empty($_GET['product_name']) 
     ? $conn->real_escape_string($_GET['product_name']) 
@@ -56,6 +54,8 @@ if (isset($_SESSION['latitude']) && isset($_SESSION['longitude'])) {
 
 ?>
 
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -89,8 +89,8 @@ if (isset($_SESSION['latitude']) && isset($_SESSION['longitude'])) {
 </div>
 
     <div class="location-indicator text-center mt-3 mb-2">
-        <i class="fas fa-map-marker-alt"></i>
-        <span><button name='product_location' id='<?php if(isset($myaddress)):echo $myaddress;endif; ?>' type='hidden' class='product_location border-0 bg-white'><?php if(isset($myaddress)): echo $myaddress; endif; ?></button>
+         <i class="fas fa-map-marker-alt"></i>
+         <span><button name='product_location' id='<?php if(isset($myaddress)):echo $myaddress;endif; ?>' type='hidden' class='product_location border-0 bg-white'><?php if(isset($myaddress)): echo $myaddress; endif; ?></button>
     </div>
 
     <div class="container">
@@ -98,31 +98,31 @@ if (isset($_SESSION['latitude']) && isset($_SESSION['longitude'])) {
         <div class="filters-section">
             <div class="d-flex flex-wrap align-items-center">
                 <select name="categories" id="categories" class="filter-button">
-                    <option  value="">All Categories</option>
-                    <option <?php if($categories=='wholesaler' && !empty($categories)){echo "selected";} ?> value="wholesaler">Wholesaler</option>
-                    <option <?php if($categories=='importer' && !empty($categories)){echo "selected";} ?> value="importer">Importer</option>
-                    <option <?php if($categories=='manufacturer' && !empty($categories)){echo "selected";} ?> value="manufacturer">Manufacturer</option>
-                    <option <?php if($categories=='distributor' && !empty($categories)){echo "selected";} ?> value="distributor">Distributor</option>
+                     <option  value="">All Categories</option>
+                     <option <?php if($categories=='wholesaler' && !empty($categories)){echo "selected";} ?> value="wholesaler">Wholesaler</option>
+                     <option <?php if($categories=='importer' && !empty($categories)){echo "selected";} ?> value="importer">Importer</option>
+                     <option <?php if($categories=='manufacturer' && !empty($categories)){echo "selected";} ?> value="manufacturer">Manufacturer</option>
+                     <option <?php if($categories=='distributor' && !empty($categories)){echo "selected";} ?> value="distributor">Distributor</option>
                 </select>
 
                 <select name="price_range" id="price_range" class="filter-button">
-                <option value=""><i class="fa fa-naira-sign"></i>Any amount</option>
-                    <option value="10000-50000">Less than <i class="fa fa-naira-sign"></i>50000</option>
-                    <option value="50000-100000">Less than <i class="fa fa-naira-sign"></i>100000</option>
-                    <option value="100000-500000">Less than <i class="fa fa-naira-sign"></i>500000</option>
-                    <option value="500000-1000000">Less than <i class="fa fa-naira-sign"></i>1000000</option>
+                     <option value=""><i class="fa fa-naira-sign"></i>Any amount</option>
+                     <option value="10000-50000">Less than <i class="fa fa-naira-sign"></i>50000</option>
+                     <option value="50000-100000">Less than <i class="fa fa-naira-sign"></i>100000</option>
+                     <option value="100000-500000">Less than <i class="fa fa-naira-sign"></i>500000</option>
+                     <option value="500000-1000000">Less than <i class="fa fa-naira-sign"></i>1000000</option>
                 </select>
 
                 <?php  
                   
-                    $get_drink = $conn->prepare("SELECT COUNT(*) AS count, product_name FROM products GROUP BY product_name");
-                    $get_drink->execute();
-                    $result = $get_drink->get_result();
+                     $get_drink = $conn->prepare("SELECT COUNT(*) AS count, product_name FROM products GROUP BY product_name");
+                     $get_drink->execute();
+                     $result = $get_drink->get_result();
 
                 ?>
 
                 <select name="brands" id="brands" class="filter-button text-capitalize text-dark">
-                    <option value="">All Brand</option>
+                     <option value="">All Brand</option>
                     <?php while ($brand = $result->fetch_assoc()) { ?>
 
                         <option <?php if ($brand['product_name'] === $product_name) echo "selected"; ?> value="<?php echo htmlspecialchars($brand['product_name']); ?>"><?php echo htmlspecialchars($brand['product_name']); ?></option>
@@ -169,37 +169,8 @@ if (isset($_SESSION['latitude']) && isset($_SESSION['longitude'])) {
 
     <?php include 'components/footer.php'; ?>
 
-    <script>
-    $(document).ready(function () {
-        <?php 
-        $categories = isset($categories) ? $categories : '';  
-        $search = isset($search) ? $search : '';  
-        $product_name = isset($product_name) ? $product_name : '';  
-        $myaddress = isset($myaddress) ? $myaddress : '';  
-        ?>
-
-        <?php if (!empty($categories) || !empty($search) || !empty($product_name) || !empty($myaddress)) { ?>
  
-        if ('<?= htmlspecialchars($categories, ENT_QUOTES, 'UTF-8') ?>' !== '') {
-            $('#categories').trigger('change');
-        }
-        if ('<?= htmlspecialchars($search, ENT_QUOTES, 'UTF-8') ?>' !== '') {
-            $('#btn-search').trigger('click');
-        }
-        if ('<?= htmlspecialchars($myaddress, ENT_QUOTES, 'UTF-8') ?>' !== '') {
-            $('.product_location').trigger('click');
-        }
-        if ('<?= htmlspecialchars($product_name, ENT_QUOTES, 'UTF-8') ?>' !== '') {
-            $('#brands').trigger('change');
-        }
 
-        <?php } ?>
-    });
-</script>
-
-      </script>
-
- 
 
      <script>
 
@@ -327,7 +298,6 @@ if (isset($_SESSION['latitude']) && isset($_SESSION['longitude'])) {
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script> 
-
 <script>
 $(document).ready(function () {
     if (navigator.geolocation) {
@@ -336,39 +306,30 @@ $(document).ready(function () {
                 var latitude = position.coords.latitude;
                 var longitude = position.coords.longitude;
 
-                console.log("Latitude: " + latitude, "Longitude: " + longitude); // Debugging
+                console.log("Latitude:", latitude, "Longitude:", longitude);
 
-                // Set the latitude and longitude values to the input fields
-                $("#mylatitude").val(latitude);
-                $("#mylongitude").val(longitude);
+                // Ensure hidden inputs are present before setting values
+                if ($("#mylatitude").length && $("#mylongitude").length) {
+                    $("#mylatitude").val(latitude);
+                    $("#mylongitude").val(longitude);
+                }
 
-                // Make the AJAX request to send data to the server
-                $.ajax({
-                    url: "engine/getLocation.php",
-                    type: "POST",
-                    data: { latitude: latitude, longitude: longitude },
-                    success: function (response) {
-                        console.log("Server Response:", response); // Debugging
-
-                        if (response == 1) {
-                            console.log("Location received successfully.");
-                           
-                        } else {
-                           console.log("Server Response:", response); // Debugging
+                // Delay AJAX request to ensure smooth execution
+                setTimeout(() => {
+                    $.ajax({
+                        url: "engine/getLocation.php",
+                        type: "POST",
+                        data: { latitude: latitude, longitude: longitude },
+                        success: function (response) {
+                            console.log("Server Response:", response);
+                        },
+                        error: function (err) {
+                            console.error("AJAX Error:", err);
                         }
-                    },
-                    error: function (err) {
-                        console.error("AJAX Error:", err);
-                        swal({
-                            title: "Error",
-                            icon: "error",
-                            text: "An error occurred while sending location data.",
-                        });
-                    },
-                });
+                    });
+                }, 3000);
             },
             function (error) {
-                // Error handling for location failure
                 let errorMsg = "";
                 switch (error.code) {
                     case error.PERMISSION_DENIED:
@@ -380,31 +341,63 @@ $(document).ready(function () {
                     case error.TIMEOUT:
                         errorMsg = "The request to get user location timed out.";
                         break;
-                    case error.UNKNOWN_ERROR:
+                    default:
                         errorMsg = "An unknown error occurred.";
-                        break;
                 }
-                console.warn("Geolocation Error: " + errorMsg);
-                swal({
-                    title: "Location Error",
-                    icon: "warning",
-                    text: errorMsg,
-                });
+                console.warn("Geolocation Error:", errorMsg);
             }
         );
     } else {
         console.warn("Geolocation is not supported by this browser.");
-        swal({
-            title: "Not Supported",
-            icon: "info",
-            text: "Geolocation is not supported by this browser.",
-        });
     }
+
+    // Ensure .product_location button exists before binding event
+
 });
 </script>
 
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script>
 <script>
-         var myaddress = "<?= htmlspecialchars($myaddress); ?>";
+
+    $(document).ready(function () {
+         <?php 
+         $categories = isset($categories) ? $categories : '';  
+         $search = isset($search) ? $search : '';  
+         $product_name = isset($product_name) ? $product_name : '';  
+         $myaddress = isset($myaddress) ? $myaddress : '';  
+
+       if (!empty($categories) || !empty($search) || !empty($product_name) || !empty($myaddress)) { ?>       
+        // Trigger change event for categories dropdown   
+            $('#categories').children('option').each(function(){
+
+                 if($(this).is(':selected')){
+
+                 $(this).trigger('change');
+
+                 }
+
+            });
+        
+
+        // Trigger click event for search button          
+            $('#btn-search').trigger('click');  
+        // Trigger click event for product location     
+            $('.product_location').trigger('click');
+        // Trigger change event for brands dropdown   
+         $('#brands').children('option').each(function(){
+
+         if($(this).is(':selected')){
+
+             $(this).trigger('change');
+
+          }
+
+         });
+
+  
+
+        <?php } ?>
+    });
 
 </script>
     

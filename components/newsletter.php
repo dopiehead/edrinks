@@ -1,5 +1,5 @@
 
-    <section class="subscribe-section">
+    <section class="subscribe-section d-none">
         <div class="subscribe-container">
             <div class="row align-items-center">
                 <!-- Subscribe Form -->
@@ -35,4 +35,5 @@
             </div>
         </div>
     </section>
+   
  

@@ -89,7 +89,7 @@ $update_product->execute();  // Execute the update query
            
             <!-- Product Details -->
             <div class="col-md-6">
-                 <div class="store-name"><a href='store.php?id=<?php echo htmlspecialchars($poster_id); ?>'><?php echo htmlspecialchars($seller_details_name); ?></a> - <span class='fw-bold'><?php echo htmlspecialchars($user_type); ?></span></div>
+                 <div class="store-name"><a href='store.php?id=<?php echo htmlspecialchars($poster_id); ?>'><?php echo htmlspecialchars($seller_details_name); ?></a> - <span class='fw-bold'><?php echo htmlspecialchars($poster_type); ?></span></div>
                  <div class='d-flex gap-3'>
                     <h1 class="product-title text-capitalize"><?php echo htmlspecialchars($product_name); ?></span></h1>
                     <span class='text-warning'><?php if(isset($discountPercentage) && !empty($discountPercentage)) echo"-".htmlspecialchars($discountPercentage)."%"; ?>

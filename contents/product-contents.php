@@ -2,6 +2,7 @@
 // Product Details
        $product_id = $product['product_id'];
        $poster_id = isset($product['poster_id']) && !empty($product['poster_id']) ? $product['poster_id'] :"N/A";
+       $poster_type = isset($product['poster_type']) &&!empty($product['poster_type'])? $product['poster_type'] :"N/A";
        $product_name = $product['product_name'];
        $product_rating = $product['product_rating'];
        $product_price = $product['product_price'];
