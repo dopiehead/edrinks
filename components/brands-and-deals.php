@@ -29,7 +29,7 @@
                         </div>
                         <div class="brand-item">
                             <img src="assets/images/cropped/coca-cola.jpg" alt="Coca-Cola">
-                            <div class="brand-name"><a class='text-white text-decoration-none' href='products.php?product_name=trophy&&category=non-alcoholic'>Coca-cola</a></div>
+                            <div class="brand-name"><a class='text-white text-decoration-none' href='products.php?product_name=coca cola&&category=non-alcoholic'>Coca-cola</a></div>
                         </div>
                         <div class="brand-item">
                             <img src="assets/images/cropped/guiness.png" alt="Guinness">
@@ -67,7 +67,7 @@
                     <div class="col-md-3">
                         <div class="deal-card">
                             <div class="badge bg-primary position-absolute"><i class='fas fa-naira-sign'></i> <?php echo htmlspecialchars(($product_discount*$product_quantity)); ?></div>
-                            <img src="<?php echo htmlspecialchars($deals['product_image']); ?>" alt="Burger Deal" class="deal-image">
+                            <a href='product-details.php?id=<?=htmlentities(base64_encode($deals['product_id'])); ?>'><img src="<?php echo htmlspecialchars($deals['product_image']); ?>" alt="Burger Deal" class="deal-image"></a>
                             <h5 class='text-capitalize'><?php echo htmlspecialchars($deals['product_name']); ?></h5>
                             <ul class="list-unstyled">
                                 <li>• <?php echo htmlspecialchars($deals['product_quantity']); ?></li>

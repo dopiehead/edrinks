@@ -18,3 +18,16 @@
             </div>
         </div>
     </div>
+    <script>
+
+         $(document).ready(function(){
+          
+            $(".order-button").click(function(e){
+             e.preventDefault();
+             window.location.href="products.php";
+            
+            });
+ 
+         });
+
+    </script>

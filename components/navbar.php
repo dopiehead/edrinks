@@ -35,10 +35,10 @@
             </a>
             <ul class="dropdown-menu">
               
-               <li><a class="dropdown-item" href="products.php?search=<?php echo htmlspecialchars(base64_encode('wholesaler')); ?>">Wholesaler</a></li>
-               <li><a class="dropdown-item" href="products.php?search=<?php echo htmlspecialchars(base64_encode('importer')); ?>">Importer</a></li>
-               <li><a class="dropdown-item" href="products.php?search=<?php echo htmlspecialchars(base64_encode('manufacturer')); ?>">Manufacturer</a></li>
-               <li><a class="dropdown-item" href="products.php?search=<?php echo htmlspecialchars(base64_encode('distributor')); ?>">Distributor</a></li>
+               <li><a class="dropdown-item" href="products.php?categories=<?php echo htmlspecialchars(base64_encode('wholesaler')); ?>">Wholesaler</a></li>
+               <li><a class="dropdown-item" href="products.php?categories=<?php echo htmlspecialchars(base64_encode('importer')); ?>">Importer</a></li>
+               <li><a class="dropdown-item" href="products.php?categories=<?php echo htmlspecialchars(base64_encode('manufacturer')); ?>">Manufacturer</a></li>
+               <li><a class="dropdown-item" href="products.php?categories=<?php echo htmlspecialchars(base64_encode('distributor')); ?>">Distributor</a></li>
 
             </ul>
           </li>

@@ -17,7 +17,7 @@
                     <div class="search-container mb-4">
                         <div class="position-relative">
                              <i class="bi bi-search search-icon"></i>
-                             <input type="text" name='q' class="form-control search-input " id='q' placeholder="Search a kind of drink">
+                             <input type="text" name='q' class="form-control search-input " id='q' placeholder="    Search a kind of drink">
                         
                         </div>
 

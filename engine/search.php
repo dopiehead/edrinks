@@ -73,19 +73,19 @@ if (isset($_GET['q']) && !empty($_GET['q'])) {
                 </span>
 
                 <span class='text-sm'>
-                   
-                   <b>instock :</b>  <?= $quantity ?> Item(s)
-                     
+                    <?php if($quantity>0): ?>
+                   <b>instock :</b>  <?= htmlspecialchars($quantity) ?> Item(s)
+                    <?php endif; ?>
                 </span>
             </div>
         <?php
         }
         ?>
         <div class='text-right px-2 py-2'>
-             <a class='text-decoration-none text-secondary' href="products.php?search=<?= urlencode($_GET['q']); ?>">See more <i class='fa fa-arrow-right'></i></a>
+             <a class='text-decoration-none text-secondary px-2 rounded-2 py-1 btn-dark text-white text-sm' href="products.php?search=<?= $_GET['q']; ?>">See more <i class='fa fa-arrow-right'></i></a>
         </div>
     <?php
-    } else {
+    } else { 
         echo "<p>No products found.</p>";
     }
 

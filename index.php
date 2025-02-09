@@ -21,7 +21,7 @@
      <?php include ("components/categories.php"); ?>
      <?php include ("components/states-we-cover.php"); ?>
      <?php include ("components/brands-and-deals.php"); ?>
-     <?php include ("components/products.php"); ?>
+    
      <?php include ("components/banner.php"); ?>
      <?php include ("components/product-list.php"); ?>
      <?php include ("components/banner-signup.php"); ?>

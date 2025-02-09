@@ -8,7 +8,7 @@
                     <p class="section-description">
                         Discover new drinks, share your favorites, and connect with other drink lovers.
                     </p>
-                    <button class="learn-more-btn">Learn More</button>
+                    <button id='about-button' href='about-us.php' class="learn-more-btn">Learn More</button>
                 </div>
                 
                 <!-- Image Column -->
@@ -20,3 +20,19 @@
             </div>
         </div>
     </div>
+   <script>
+
+        $(document).ready(function(){
+            // When learn more button is clicked, open about page.
+           $("#about-button").click(function(){
+               var about_page = $(this).attr("href");
+               window.location.href = about_page;
+       
+
+           });
+
+
+        });
+
+
+   </script>

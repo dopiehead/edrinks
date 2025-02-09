@@ -13,11 +13,11 @@
                         Explore a wide variety of drinks from around the world. Join our community of drink enthusiasts.
                     </p>
                     <div class="buttons-container">
-                        <button class="btn category-button">Wholesale</button>
-                        <button class="btn category-button">Retail</button>
-                        <button class="btn category-button">Importer</button>
-                        <button class="btn category-button">Major Distributor</button>
-                        <button class="btn category-button">Manufacturer</button>
+                        <a href='products.php?categories=wholesaler' class="btn  category-button">Wholesale</a>
+                        <a href='products.php?categories=distributor' class="btn  category-button">Distributor</a>
+                        <a href='products.php?categories=importer' class="btn  category-button">Importer</a>
+
+                        <a href='products.php?categories=manufacturer' class="btn  category-button">Manufacturer</a>
                     </div>
                 </div>
             </div>

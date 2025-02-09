@@ -100,10 +100,11 @@ if (isset($_GET['status'], $_GET['reference'], $_GET['id'], $_GET['user_type'], 
                 <?php 
                 // Define dashboard links
                 $dashboardLinks = [
-                    "Wholesaler" => "wholesaler/wholesaler-dashboard.php",
-                    "Distributor" => "distributor/distributor-dashboard.php",
-                    "Manufacturer" => "dashboard/manufacturer-dashboard.php",
-                    "Importer" => "importer/importer-dashboard.php",
+                    "Customer" => "customer-dashboard.php",
+                    "Wholesaler" => "wholesaler-dashboard.php",
+                    "Distributor" => "distributor-dashboard.php",
+                    "Manufacturer" => "manufacturer-dashboard.php",
+                    "Importer" => "importer-dashboard.php",
                 ];
                 
                 $dashboardLink = $dashboardLinks[$user_type] ?? "general/dashboard.php"; // Default to general dashboard

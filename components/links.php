@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="assets/css/hero.css">
 <!-- <link rel="stylesheet" href="assets/css/ads.css"> -->
 <link rel="stylesheet" href="assets/css/navbar.css">
+<link rel="stylesheet" href="assets/css/scrollbar.css">
 <link rel="stylesheet" href="assets/css/footer.css">
 <link rel="stylesheet" href="assets/css/btn_scroll.css">
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />

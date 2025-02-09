@@ -1,3 +1,40 @@
+
+body{
+    font-family: poppins !important;
+}
+
+.input-group {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.form-control {
+    border-right: none;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    padding: 0.75rem 1.25rem;
+}
+
+.btn {
+    border-left: none;
+    border-top-right-radius: 25px !important;
+    border-bottom-right-radius: 25px !important;
+    padding: 0.75rem 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .col-md-8 {
+        padding: 0 15px;
+    }
+    
+    .form-control, .btn {
+        padding: 0.5rem 1rem;
+    }
+}
+
+
+
 .filters-section {
     background-color: #fff;
     padding: 1rem 0;
