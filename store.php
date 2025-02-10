@@ -1,22 +1,51 @@
 <?php session_start();
-if(isset($_GET['id'])){
-      require("engine/config.php");
-      $id = $_GET['id'];
-      $stmt = $conn->prepare("SELECT * FROM user_profile WHERE id = ? ");  
-      $getupdate = $stmt->bind_param('i',$id);
-      $stmt->execute();
-      $result = $stmt->get_result();
-      $user = $result->fetch_assoc();
-      if($user){
-         include("contents/user-contents.php");
-   }
 
-   else{
-         header("Location:product-details.php?id=". base64_encode($id));
-   }
+if (isset($_GET['id'])) {
+    require("engine/config.php");
+
+    // Sanitize and validate the input id.
+    $id = intval($_GET['id']);
+
+    // Prepare and execute query to fetch user profile.
+    $stmt = $conn->prepare("SELECT * FROM user_profile WHERE id = ?");
+    if (!$stmt) {
+        die("Prepare failed: " . $conn->error);
+    }
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
+    $stmt->close();
+
+    if ($user) {
+        // Include additional user content.
+        include("contents/user-contents.php");
+
+        // Prepare and execute query to get the seller's total product views.
+        $get_seller_profile = $conn->prepare("SELECT SUM(product_views) AS views FROM products WHERE poster_id = ?");
+        if (!$get_seller_profile) {
+            die("Prepare failed: " . $conn->error);
+        }
+        $get_seller_profile->bind_param("i", $user['id']);
+        $get_seller_profile->execute();
+        $profileResult = $get_seller_profile->get_result();
+        $profileData = $profileResult->fetch_assoc();
+        $seller_views = $profileData['views'];
+        $get_seller_profile->close();
+
+        // You can now use $seller_views as needed.
+        // For example:
+        echo "<p>Total product views: " . htmlspecialchars($seller_views) . "</p>";
+    } else {
+        // If no user is found, redirect.
+        header("Location: product-details.php?id=" . base64_encode($id));
+        exit();
+    }
 }
-
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -75,11 +104,11 @@ if(isset($_GET['id'])){
                         </div>
 
                         <div class="mt-3">
-                            <span class="badge bg-secondary me-2">Drink</span>
-                            <span class="badge bg-secondary me-2">Soft drink</span>
-                            <span class="badge bg-secondary me-2">Yellow</span>
-                            <span class="badge bg-secondary me-2">Fruit</span>
-                            <span class="badge bg-secondary">Cheap</span>
+                            <a href='products.php?search=drink' class="badge bg-secondary me-2 text-decoration-none">Drink</a>
+                            <a href='products.php?search=soft drink' class="badge bg-secondary me-2 text-decoration-none">Soft drink</a>
+                            <a href='products.php?search=yellow' class="badge bg-secondary me-2 text-decoration-none">Yellow</a>
+                            <a href='products.php?search=fruits' class="badge bg-secondary me-2 text-decoration-none">Fruit</a>
+                            <a href='products.php?seach=cheap' class="badge bg-secondary text-decoration-none">Cheap</a>
                         </div>
 
                         <div class="mt-4">
@@ -88,7 +117,7 @@ if(isset($_GET['id'])){
                                     <i class="fas fa-thumbs-up me-1"></i>324
                                 </span>
                                 <span class="badge bg-danger">
-                                    <i class="fas fa-eye me-1"></i>views
+                                    <i class="fas fa-eye me-1"></i><?= htmlspecialchars($seller_views);?> views
                                 </span>
                             </div>
                         </div>
@@ -142,18 +171,18 @@ if(isset($_GET['id'])){
             <div class="col-md-3">
                 <h5 class="mb-3">Categories</h5>
                 <div class="categories-list">
-                    <a href="#" class="category-link">Soft drinks <span>(201)</span></a>
-                    <a href="#" class="category-link">Hot drinks <span>(201)</span></a>
-                    <a href="#" class="category-link">Smoothie <span>(201)</span></a>
-                    <a href="#" class="category-link">Yogurt <span>(201)</span></a>
-                    <a href="#" class="category-link">Fruit drinks <span>(201)</span></a>
-                    <a href="#" class="category-link">Water <span>(201)</span></a>
-                    <a href="#" class="category-link">Mocktail <span>(201)</span></a>
-                    <a href="#" class="category-link">Dessert <span>(201)</span></a>
-                    <a href="#" class="category-link">Soda <span>(201)</span></a>
-                    <a href="#" class="category-link">Punch <span>(201)</span></a>
-                    <a href="#" class="category-link">Coffee <span>(201)</span></a>
-                    <a href="#" class="category-link">Coconut water <span>(201)</span></a>
+                    <a href="products.php?search=soft drinks" class="category-link  text-decoration-none">Soft drinks <span>(0)</span></a>
+                    <a href="products.php?search=hot drinks" class="category-link text-decoration-none">Hot drinks <span>(0)</span></a>
+                    <a href="products.php?seach=smoothie" class="category-link text-decoration-none">Smoothie <span>(0)</span></a>
+                    <a href="products.php?search=yoghurt" class="category-link text-decoration-none">Yoghurt <span>(0)</span></a>
+                    <a href="products.php?search=fruit drinks" class="category-link text-decoration-none">Fruit drinks <span>(201)</span></a>
+                    <a href="products.php?search=water" class="category-link text-decoration-none">Water <span>(0)</span></a>
+                    <a href="products.php?search=mocktail" class="category-link text-decoration-none">Mocktail <span>(0)</span></a>
+                    <a href="products.php?search=dessert" class="category-link text-decoration-none">Dessert <span>(0)</span></a>
+                    <a href="products.php?search=soda" class="category-link text-decoration-none">Soda <span>(0)</span></a>
+                    <a href="products.php?search=punch" class="category-link text-decoration-none">Punch <span>(0)</span></a>
+                    <a href="products.php?search=coffee" class="category-link text-decoration-none">Coffee <span>(0)</span></a>
+                    <a href="products.php?search=coconut water" class="category-link text-decoration-none">Coconut water <span>(0)</span></a>
                 </div>
                 <button class="btn btn-primary w-100 mt-3">Add</button>
             </div>
