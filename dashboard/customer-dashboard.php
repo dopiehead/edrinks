@@ -19,9 +19,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wholesaler Dashboard</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat|sofia|Trirong|Poppins">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/wholesaler/wholesaler-dashboard.css">
-
 </head>
 <body class="bg-light">
 <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom fixed-top">
@@ -32,7 +32,7 @@
                 <input type="text" class="form-control search-input" placeholder="Search">
             </div>
             <div class="d-flex align-items-center gap-3">
-                <i class="fas fa-bell text-secondary"></i>
+            <a href='notifications.php'><i class="fas fa-bell text-secondary"></i></a>
                 <img src="<?php echo"../" .htmlspecialchars($user_image); ?>" class="rounded-circle" width="32" height="32">
                 <span><?php echo htmlspecialchars($user_name); ?></span>
                 <i class="fas fa-chevron-down"></i>

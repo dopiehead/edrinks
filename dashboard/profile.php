@@ -20,6 +20,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat|sofia|Trirong|Poppins">
     <link rel="stylesheet" href="../assets/css/wholesaler/wholesaler-dashboard.css">
 
 </head>
@@ -32,7 +33,7 @@
                 <input type="text" class="form-control search-input" placeholder="Search">
             </div>
             <div class="d-flex align-items-center gap-3">
-                <i class="fas fa-bell text-secondary"></i>
+            <a href='notifications.php'><i class="fas fa-bell text-secondary"></i></a>
                 <img src="<?php echo"../" .htmlspecialchars($user_image); ?>" class="rounded-circle" width="32" height="32">
                 <span><?php echo htmlspecialchars($user_name); ?></span>
                 <i class="fas fa-chevron-down"></i>
@@ -48,18 +49,17 @@
 
 
     <!-- Main Content -->
-    <div class="main-content pt-5">
-   
-    <div class="container-fluid p-4">
-<div id="label">
-<div id="messages_home" style="text-align: center;">
-<div class="tab">
-<a class="tablinks btn btn-primary"  id="defaultOpen" onclick="openCity(event,'London')">My profile</a>
-<a class="tablinks btn btn-trash" onclick="openCity(event,'Paris')">Edit Profile</a>
+    <div class="main-content pt-5">   
+          <div class="container-fluid p-4">
+             <div id="label">
+                 <div id="messages_home" style="text-align: center;">
+                     <div class="tab">
+                          <a class="tablinks btn btn-primary"  id="defaultOpen" onclick="openCity(event,'London')">My profile</a>
+                          <a class="tablinks btn btn-trash" onclick="openCity(event,'Paris')">Edit Profile</a>
 
-</div>
+                     </div>
 
-</div>
+                 </div>
 
 
 
@@ -67,13 +67,13 @@
 
 <div id="London" class="tabcontent">
 
-<table style="width: 100%;">
+ <table style="width: 100%;">
      <thead>
          <tr style="border-top: 2px solid rgba(192,192,192,0.4);border-bottom: 2px solid rgba(192,192,192,0.4);">
               <th style="padding:10px;" class="inbox" id="Home">Personal details</th>
          </tr>
      </thead>
-</table>
+ </table>
 
 <br><br>
 
@@ -92,10 +92,10 @@
 <?php if (isset($_SESSION['user_id']) ) {
 ?>
 
-<small> <?php  echo htmlspecialchars($user_phone);?></small><br>
+ <small> <?php  echo htmlspecialchars($user_phone);?></small><br>
 
 
-<small>Dial code +234</small><br>
+ <small>Dial code +234</small><br>
 
 <?php
 }
@@ -103,17 +103,17 @@
 
 <small><?php echo htmlspecialchars($user_email);?></small>
 
-   <br>
+     <br>
 
-   <i class="fa-solid fa-user-alt"></i><br>
+     <i class="fa-solid fa-user-alt"></i><br>
 
-<form id="editpage-form" method="post">
+ <form id="editpage-form" method="post">
 
      <input type="hidden" name="id" value="">
      <input type="file" name="fileupload"><br><br>
-<input type="submit" name="submit" id="submit" value="Change photo (Max 4MB)" class="btn btn-success " style="color: white;"><br>
+     <input type="submit" name="submit" id="submit" value="Change photo (Max 4MB)" class="btn btn-success " style="color: white;"><br>
 
-</form>
+ </form>
 
 
 </div>

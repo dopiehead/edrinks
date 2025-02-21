@@ -12,6 +12,7 @@ $search = isset($_GET['search']) && !empty($_GET['search'])
 $product_name = isset($_GET['product_name']) && !empty($_GET['product_name']) 
     ? $conn->real_escape_string($_GET['product_name']) 
     : '';
+  
 ?>
 
 <input type="hidden" id='mylongitude'>
@@ -51,6 +52,7 @@ if (isset($_SESSION['latitude']) && isset($_SESSION['longitude'])) {
      $_SESSION['address'] = $myaddress;
 
 }
+
 
 ?>
 
@@ -369,29 +371,19 @@ $(document).ready(function () {
        if (!empty($categories) || !empty($search) || !empty($product_name) || !empty($myaddress)) { ?>       
         // Trigger change event for categories dropdown   
             $('#categories').children('option').each(function(){
-
                  if($(this).is(':selected')){
-
-                 $(this).trigger('change');
-
+                      $(this).trigger('change');
                  }
-
             });
-        
-
         // Trigger click event for search button          
             $('#btn-search').trigger('click');  
         // Trigger click event for product location     
             $('.product_location').trigger('click');
         // Trigger change event for brands dropdown   
-         $('#brands').children('option').each(function(){
-
-         if($(this).is(':selected')){
-
-             $(this).trigger('change');
-
-          }
-
+              $('#brands').children('option').each(function(){
+                  if($(this).is(':selected')){
+                  $(this).trigger('change');
+             }
          });
 
   

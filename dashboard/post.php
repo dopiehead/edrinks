@@ -2,13 +2,15 @@
 
 require("../engine/config.php"); 
 
-$getkey = mysqli_query($conn, "SELECT * FROM information");
+$getkey = $conn->prepare("SELECT * FROM information");
 
-$key_variable = mysqli_fetch_array($getkey);
+$getkey ->execute();
+
+$result = $getkey->get_result();
+
+$key_variable = $result->fetch_assoc($getkey);
 
 $key = $key_variable['mykey'];
-
-echo $key;
 
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_role'])) { 
      if($_SESSION['user_role']=='Customer'){
@@ -39,7 +41,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_role'])) {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script>
-     
+     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat|sofia|Trirong|Poppins">
     <link rel="stylesheet" href="../assets/css/wholesaler/wholesaler-dashboard.css">
     <link rel="stylesheet" href="../assets/css/wholesaler/wholesaler-posts.css">
 
@@ -53,7 +55,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_role'])) {
                 <input type="text" class="form-control search-input" placeholder="Search">
             </div>
             <div class="d-flex align-items-center gap-3">
-                 <i class="fas fa-bell text-secondary"></i>
+            <a href='notifications.php'><i class="fas fa-bell text-secondary"></i></a>
                  <img src="<?php echo"../" .htmlspecialchars($user_image); ?>" class="rounded-circle" width="32" height="32">
                  <span><?php echo htmlspecialchars($user_name); ?></span>
                  <i class="fas fa-chevron-down"></i>

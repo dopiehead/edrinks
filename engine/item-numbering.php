@@ -6,10 +6,11 @@ require 'config.php';
 if (isset($_SESSION['user_id'])) {
     $buyer = $_SESSION['user_id'];    
 } else {
-    $buyer = substr(sha1(time()), 0, 12);
+    $buyer = null;
 }
 
 if (!empty($_SESSION)) {
+
     $cart_item = "SELECT COUNT(*) AS num_cart FROM cart WHERE buyer = ? AND payment_status = 0";
 
     if ($stmt = mysqli_prepare($conn, $cart_item)) {

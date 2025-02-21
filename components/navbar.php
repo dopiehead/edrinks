@@ -53,19 +53,24 @@
               Sell Drinks
             </a>
             <ul class="dropdown-menu">
-            <li>
-    <a class="dropdown-item" href="<?php echo isset($_SESSION['user_id']) ? 'dashboard/posts.php' : 'sign-in.php?details=' . urlencode('dashboard/wholesaler/wholesaler-post.php'); ?>">
+ <li>
+    <a class="dropdown-item" href="<?= isset($_SESSION['user_id']) ? 'dashboard/post.php' : 'sign-in.php?details=' . urlencode('dashboard/post.php'); ?>">
         Wholesaler
     </a>
 </li>
 <li>
-    <a class="dropdown-item" href="<?php echo isset($_SESSION['user_id']) ? 'dashboard/posts.php' : 'sign-in.php?details=' . urlencode('dashboard/importer/importer-post.php'); ?>">
+    <a class="dropdown-item" href="<?= echo isset($_SESSION['user_id']) ? 'dashboard/post.php' : 'sign-in.php?details=' . urlencode('dashboard/post.php'); ?>">
         Importer
     </a>
 </li>
 <li>
-    <a class="dropdown-item" href="<?php echo isset($_SESSION['user_id']) ? 'dashboard/posts.php' : 'sign-in.php?details=' . urlencode('dashboard/manufacturer/manufacturer-post.php'); ?>">
+    <a class="dropdown-item" href="<?= echo isset($_SESSION['user_id']) ? 'dashboard/post.php' : 'sign-in.php?details=' . urlencode('dashboard/post.php'); ?>">
         Manufacturer
+    </a>
+</li>
+<li>
+    <a class="dropdown-item" href="<?= echo isset($_SESSION['user_id']) ? 'dashboard/post.php' : 'sign-in.php?details=' . urlencode('dashboard/post.php'); ?>">
+        Distributor
     </a>
 </li>
 

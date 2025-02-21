@@ -34,8 +34,7 @@ if (isset($_GET['id'])) {
         $get_seller_profile->close();
 
         // You can now use $seller_views as needed.
-        // For example:
-        echo "<p>Total product views: " . htmlspecialchars($seller_views) . "</p>";
+
     } else {
         // If no user is found, redirect.
         header("Location: product-details.php?id=" . base64_encode($id));

@@ -1,7 +1,15 @@
 <?php
 session_start();
-error_reporting(E_ALL ^ E_NOTICE);
+// error_reporting(E_ALL ^ E_NOTICE);
 require("config.php");
+
+
+error_reporting(E_ALL);        // Report all errors
+ini_set('display_errors', 1);  // Display errors on the page
+
+
+
+
 
 // Redirect if user is not logged in
 if (!isset($_SESSION["user_id"])) { 
@@ -20,7 +28,7 @@ $result = $getkey->get_result();
 $mykey = $result->fetch_assoc()['mykey'] ?? '';
 
 // Fetch buyer details
-$getbuyer = $conn->prepare("SELECT user_name, user_email, user_address FROM user_profile WHERE id = ?");
+$getbuyer = $conn->prepare("SELECT id, user_name, user_email, user_address, user_type FROM user_profile WHERE id = ?");
 $getbuyer->bind_param("s", $buyer);
 $getbuyer->execute();
 $result = $getbuyer->get_result();
@@ -31,13 +39,12 @@ $userEmail = $user['user_email'];
 $userAddress = $user['user_address'];
 $userType = $user['user_type'];
 
-
 // Fetch cart items
-$cart_query = "SELECT cart.itemId, cart.noofItem, products.product_name, products.product_image, 
+$cart_query = "SELECT cart.itemId, cart.noofItem, cart.payment_status, products.product_name, products.product_image, 
                 products.product_price, products.product_discount 
                 FROM cart 
                 JOIN products ON cart.itemId = products.product_id 
-                WHERE cart.buyer = ?";
+                WHERE cart.buyer = ? AND cart.payment_status = 0";
 $stmt = $conn->prepare($cart_query);
 $stmt->bind_param("s", $buyer);
 $stmt->execute();
@@ -129,6 +136,7 @@ $delivery_fee = 7.54;
     <script src="https://js.paystack.co/v2/inline.js"></script>
     <script>
     $(document).ready(function () {
+        $('.numbering').load('engine/item-numbering.php');
         $('#paymentForm').submit(function (e) {
             e.preventDefault();
 

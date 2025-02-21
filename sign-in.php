@@ -1,3 +1,8 @@
+<?php 
+$details = isset($_GET['details']) && !empty($_GET['details']) ? filter_var($_GET['details'],FILTER_SANITIZE_URL): null;
+?>
+<input type="hidden" name='url' id='url' value = "<?= htmlspecialchars($details) ?>">
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,11 +15,8 @@
 
 <body class="bg-light">
 
-  
-
      <div class="card">
-        
-     
+             
         <h2>Sign In</h2>
         <form id="signinForm" style='font-family:poppins;'>
 
@@ -43,27 +45,33 @@
     </div>
 
     <script>
-        $(document).ready(function() {
-             $(".spinner-border").hide();
-             $("#signinForm").submit(function(event) {
-                 event.preventDefault();
-                 $(".spinner-border").show();
-                 $(".signin-note").hide();
-                 $('.btn-custom').prop('disabled', true);
-                 let email = $("#email").val();
-                 let password = $("#password").val();
-
-                 $.ajax({
-                    type: "POST",
-                    url: "engine/signin-process.php",
-                    data: { email: email, password: password },
-                    dataType: "json",
-                    success: function(response) {
-                         $(".spinner-border").hide();
-                         $(".signin-note").show();
-                         $('.btn-custom').prop('disabled', false);
-                         if (response.status === "success") {
-                            // Redirect based on role
+    $(document).ready(function() {
+        $(".spinner-border").hide();
+        
+        $("#signinForm").submit(function(event) {
+            event.preventDefault();
+            $(".spinner-border").show();
+            $(".signin-note").hide();
+            $('.btn-custom').prop('disabled', true);
+            
+            let email = $("#email").val();
+            let password = $("#password").val();
+            let url = $("#url").val().trim(); // Trim URL to ensure it's not empty
+            
+            $.ajax({
+                type: "POST",
+                url: "engine/signin-process.php",
+                data: { email: email, password: password },
+                dataType: "json",
+                success: function(response) {
+                    $(".spinner-border").hide();
+                    $(".signin-note").show();
+                    $('.btn-custom').prop('disabled', false);
+                    
+                    if (response.status === "success") {
+                        if (url && url !== "") {
+                            window.location.href = url;
+                        } else {
                             switch (response.user_role) {
                                 case "Customer":
                                     window.location.href = "dashboard/customer-dashboard.php";
@@ -74,9 +82,9 @@
                                 case "Wholesaler":
                                     window.location.href = "dashboard/wholesaler-dashboard.php";
                                     break;
-                                 case "Manufacturer":
+                                case "Manufacturer":
                                     window.location.href = "dashboard/manufacturer-dashboard.php";
-                                    break;                                   
+                                    break;
                                 case "Admin":
                                     window.location.href = "dashboard/admin/admin-dashboard.php";
                                     break;
@@ -87,17 +95,22 @@
                                     window.location.href = "dashboard/general/general-dashboard.php";
                                     break;
                             }
-                        } else {
-                            $("#error-message").text(response.message);
                         }
-                    },
-                    error: function() {
-                        $("#error-message").text("Something went wrong. Please try again.");
+                    } else {
+                        $("#error-message").text(response.message);
                     }
-                });
+                },
+                error: function() {
+                    $(".spinner-border").hide();
+                    $(".signin-note").show();
+                    $('.btn-custom').prop('disabled', false);
+                    $("#error-message").text("Something went wrong. Please try again.");
+                }
             });
         });
-     </script>
+    });
+</script>
+
 
 </body>
 </html>

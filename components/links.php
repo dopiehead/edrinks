@@ -53,3 +53,4 @@ body{
 
 
 <script src="assets/js/scroll.js" type="text/javascript"></script>
+<script src="assets/js/item-numbering.js" type="text/javascript"></script>
