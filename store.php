@@ -1,8 +1,6 @@
 <?php session_start();
-
+     require("engine/config.php");
 if (isset($_GET['id'])) {
-    require("engine/config.php");
-
     // Sanitize and validate the input id.
     $id = intval($_GET['id']);
 
@@ -42,6 +40,35 @@ if (isset($_GET['id'])) {
     }
 }
 ?>
+
+
+<?php
+require __DIR__ . '/vendor/autoload.php';
+
+use Google\Geocoding\Location;
+use Google\Maps\DistanceMatrix;
+
+$apiKey = "AIzaSyCL0LtlReopBM22H3uumKSLK2a5KukPduA";
+$origin = ''; // e.g., 'New York, NY'
+$destination = '$user_address'; // e.g., 'Los Angeles, CA'
+
+$geocoding = new Google\Geocoding\Geocoding($apiKey);
+$location = $geocoding->geocode($origin);
+$originLat = $location->getLatitude();
+$originLng = $location->getLongitude();
+
+$distanceMatrix = new Google\Maps\DistanceMatrix($apiKey);
+$response = $distanceMatrix->matrix($origin, $destination);
+
+$distance = $response->getRows()[0]->getElements()[0]->getDistance()->getValue();
+$duration = $response->getRows()[0]->getElements()[0]->getDuration()->getValue();
+
+echo "Distance: $distance km\n";
+echo "Duration: $duration seconds\n";
+?>
+
+
+
 
 
 
@@ -325,65 +352,60 @@ if ($getmore) {
             <h4 class="mb-4">Other choices for import</h4>
             <div class="row g-4">
                 <!-- Business Card 1 -->
-                 <?php 
-                  
-                    $stmt = $conn->prepare("SELECT * FROM user_profile WHERE verified = 1  user_type = 'importer'");
-                    if(!$stmt){
-                        echo "<span class='text-muted mt-4 px-2'>No user profile found</span>";
-                    }
-                    else{
-                        $stmt->execute();
-                        $result = $stmt->get_result();
-                        if($result){
-                        while($row = $result->fetch_assoc()){?>
-                             <a href="store.php?id=<?php echo htmlspecialchars($row['id']);?>" class="business-link">
-
-                <div class="col-md-3">
-                    <div class="business-card position-relative">
-                        <img src="<?php echo htmlspecialchars($row['user_image']); ?>" alt="Jay's and Josh" class="business-img">
-                        <button class="share-btn">
-                            <i class="fas fa-share-alt"></i>
-                        </button>
-                        <div class="p-3">
-                            <h5 class="mb-2"><?php echo htmlspecialchars($row['user_name']); ?></h5>
-                            <p class="text-muted small mb-2">
-                                <i class="fas fa-location-dot me-1"></i>
-                                <?= htmlspecialchars($row['user_address']); ?>
-                            </p>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="text-warning">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
+                <?php 
+    $stmt = $conn->prepare("SELECT * FROM user_profile WHERE verified = 1 AND user_type = 'importer'");
+    if(!$stmt){
+        echo "<span class='text-muted mt-4 px-2'>No user profile found</span>";
+    }
+    else{
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if($result){
+            while($row = $result->fetch_assoc()){
+?>
+                <a href="store.php?id=<?php echo htmlspecialchars($row['id']);?>" class="business-link">
+                    <div class="col-md-3">
+                        <div class="business-card position-relative">
+                            <img src="<?php echo htmlspecialchars($row['user_image']); ?>" alt="Jay's and Josh" class="business-img">
+                            <button class="share-btn">
+                                <i class="fas fa-share-alt"></i>
+                            </button>
+                            <div class="p-3">
+                                <h5 class="mb-2"><?php echo htmlspecialchars($row['user_name']); ?></h5>
+                                <p class="text-muted small mb-2">
+                                    <i class="fas fa-location-dot me-1"></i>
+                                    <?= htmlspecialchars($row['user_address']); ?>
+                                </p>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                    <span class="rating-badge">4.34</span>
                                 </div>
-                                <span class="rating-badge">4.34</span>
-                            </div>
-                            <div class="mt-2">
-                                <span class="badge bg-primary">
-                                    <i class="fas fa-thumbs-up me-1"></i>324
-                                </span>
-                                <span class="badge bg-danger ms-1">
-                                    <i class="fas fa-heart me-1"></i>193
-                                </span>
+                                <div class="mt-2">
+                                    <span class="badge bg-primary">
+                                        <i class="fas fa-thumbs-up me-1"></i>324
+                                    </span>
+                                    <span class="badge bg-danger ms-1">
+                                        <i class="fas fa-heart me-1"></i>193
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <?php  }
-                
-                 }
-
-                    else{
-                        echo "No user found";
-                    }
-
-                    $stmt->close();
-                 }
-                 
-                 ?>
-               
+                </a>
+<?php  
+            }
+        } else {
+            echo "No user found";
+        }
+        $stmt->close();
+    }
+?>
 
                 <!-- Additional cards... -->
             </div>
@@ -398,7 +420,7 @@ if ($getmore) {
             <!-- Review Cards -->
             <?php 
                   
-                  $stmt_reviews = $conn->prepare("SELECT * FROM user_profile WHERE verified = 1  user_type = 'importer'");
+                  $stmt_reviews = $conn->prepare("SELECT * FROM user_profile WHERE verified = 1 AND user_type = 'importer'");
                   if(!$stmt_reviews){
                       echo "<span class='text-muted mt-4 px-2'>No user profile found</span>";
                   }

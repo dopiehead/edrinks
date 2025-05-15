@@ -59,17 +59,17 @@
     </a>
 </li>
 <li>
-    <a class="dropdown-item" href="<?= echo isset($_SESSION['user_id']) ? 'dashboard/post.php' : 'sign-in.php?details=' . urlencode('dashboard/post.php'); ?>">
+    <a class="dropdown-item" href="<?= isset($_SESSION['user_id']) ? 'dashboard/post.php' : 'sign-in.php?details=' . urlencode('dashboard/post.php'); ?>">
         Importer
     </a>
 </li>
 <li>
-    <a class="dropdown-item" href="<?= echo isset($_SESSION['user_id']) ? 'dashboard/post.php' : 'sign-in.php?details=' . urlencode('dashboard/post.php'); ?>">
+    <a class="dropdown-item" href="<?= isset($_SESSION['user_id']) ? 'dashboard/post.php' : 'sign-in.php?details=' . urlencode('dashboard/post.php'); ?>">
         Manufacturer
     </a>
 </li>
 <li>
-    <a class="dropdown-item" href="<?= echo isset($_SESSION['user_id']) ? 'dashboard/post.php' : 'sign-in.php?details=' . urlencode('dashboard/post.php'); ?>">
+    <a class="dropdown-item" href="<?= isset($_SESSION['user_id']) ? 'dashboard/post.php' : 'sign-in.php?details=' . urlencode('dashboard/post.php'); ?>">
         Distributor
     </a>
 </li>
@@ -86,21 +86,35 @@
         <!-- Icons -->
         <div class="d-flex align-items-center ms-lg-3 position-relative">
           <a href="#" class="icons me-3"><i class="bi bi-search"></i></a>
-          <?php if(!isset($_SESSION['user_id'])) { ?> 
-          <a href="sign-in.php" class="icons me-3"><i class="bi bi-person"></i></a>
-          <?php } else {
-           if(!empty($_SESSION['user_role'])){
-            $user_role = $_SESSION['user_role'];
-            if($user_role=='Customer'){?>
-               <a href="dashboard/customer-dashboard.php" class="icons me-3"><i class="bi bi-person"></i></a>  
-           <?php } elseif($user_role=='Importer') { ?>   
-               <a href="dashboard/importer-dashboard.php" class="icons me-3"><i class="bi bi-person"></i></a>  
-           <?php } elseif($user_role == 'Wholesaler') {?> 
-            <a href="dashboard/wholesaler-dashboard.php" class="icons me-3"><i class="bi bi-person"></i></a>  
-           <?php } elseif($user_role=='Distributor'){?> 
-            <a href="dashboard/distributor-dashboard.php" class="icons me-3"><i class="bi bi-person"></i></a>  
-            <?php } ?>       
-            <?php }  }?>
+<?php if(!isset($_SESSION['user_id'])) { ?> 
+    <a href="sign-in.php" class="icons me-3"><i class="bi bi-person"></i></a>
+<?php } else {
+    if(!empty($_SESSION['user_role'])) {
+        $user_role = $_SESSION['user_role'];
+        $dashboard_url = '';
+        
+        switch($user_role) {
+            case 'Customer':
+                $dashboard_url = 'dashboard/customer-dashboard.php';
+                break;
+            case 'Importer':
+                $dashboard_url = 'dashboard/importer-dashboard.php';
+                break;
+            case 'Wholesaler':
+                $dashboard_url = 'dashboard/wholesaler-dashboard.php';
+                break;
+            case 'Distributor':
+                $dashboard_url = 'dashboard/distributor-dashboard.php';
+                break;
+            default:
+                $dashboard_url = 'dashboard/sign-in.php';
+        }
+        ?>
+        <a href="<?php echo $dashboard_url; ?>" class="icons me-3"><i class="bi bi-person-fill"></i></a>
+    <?php }
+} ?>
+
+
           <a href="cart.php" class="icons"><i class="bi bi-bag"></i><span style='font-size:12px; margin-top:-3px' class='numbering rounded rounded-circle bg-danger text-white px-2 position-absolute'></span></a>
         </div>
       </div>
